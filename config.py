@@ -4,7 +4,7 @@ MQTT_TOPIC = "ai_agent_x/messages"
 
 # Agent settings
 AGENT_NAME = "AI_Assistant"
-MEMORY_LENGTH = 10  # Number of messages to remember
+MEMORY_LENGTH = 100  # Number of messages to remember
 
 # LLM API settings
 LLM_API_BASE = "http://localhost:1234/v1"

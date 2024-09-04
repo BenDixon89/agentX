@@ -70,6 +70,7 @@ To use a local model with LM Studio:
   - `agent.py`: Main AI Agent class
   - `mqtt_client.py`: MQTT client implementation
   - `llm_model.py`: LLM integration (OpenAI or local)
+- `.gitignore`: Specifies intentionally untracked files to ignore
 
 ## Usage
 
@@ -123,3 +124,62 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Docker Deployment
+
+You can deploy AgentX using the pre-built Docker image from DockerHub or build your own image.
+
+### Using the pre-built image from DockerHub
+
+1. Pull the Docker image:
+   ```
+   docker pull bendixon89/agentx:latest
+   ```
+
+2. Run the Docker container:
+   ```
+   docker run -d --name agentx_container bendixon89/agentx:latest
+   ```
+
+   If you need to expose the MQTT port (1883) to your host machine, use:
+   ```
+   docker run -d -p 1883:1883 --name agentx_container bendixon89/agentx:latest
+   ```
+
+### Building your own Docker image
+
+1. Ensure you have Docker installed on your system.
+
+2. Build the Docker image:
+   ```
+   docker build -t agentx .
+   ```
+
+3. Run the Docker container:
+   ```
+   docker run -d --name agentx_container agentx
+   ```
+
+   If you need to expose the MQTT port (1883) to your host machine, use:
+   ```
+   docker run -d -p 1883:1883 --name agentx_container agentx
+   ```
+
+### Managing the Docker container
+
+4. To view the logs of the running container:
+   ```
+   docker logs agentx_container
+   ```
+
+5. To stop the container:
+   ```
+   docker stop agentx_container
+   ```
+
+6. To remove the container:
+   ```
+   docker rm agentx_container
+   ```
+
+Note: Make sure your `config.py` file is properly configured before building or running the Docker image. If you're using a local LLM, you may need to adjust the `LLM_API_BASE` to point to your host machine's IP instead of `localhost`.
